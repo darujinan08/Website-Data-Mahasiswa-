@@ -73,6 +73,8 @@ Web Data Mahasiswa/
     ├── catatan_function.md
     └── database_init.sql
     └── Dokumentasi Penggunaan Website Data Mahasiswa.pdf
+    └── Dokumentasi Instalasi Software.pdf
+
 ```
 
 ## Cara Menggunakan
@@ -129,7 +131,7 @@ Detail dokumentasi lengkap di folder `docs/`:
 - `analisis_spesifikasi.md` - Penjelasan tentang aplikasi
 - `catatan_function.md` - Penjelasan setiap function
 - `Dokumentasi Penggunaan Website Data Mahasiswa.pdf` - Penjelasan penggunaan website disertai screenshot gambar.
-
+- `Dokumentasi Instalasi Software.pdf` - Penjelasan instalasi software disertai screenshot gambar.
 
 ## Lisensi
 
