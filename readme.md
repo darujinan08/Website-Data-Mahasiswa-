@@ -69,9 +69,8 @@ Web Data Mahasiswa/
 │   ├── css/style.css      (styling)
 │   └── js/script.js       (validasi & interaksi)
 └── docs/
-    ├── ANALISIS_SPESIFIKASI.md
-    ├── PANDUAN_SETUP.md
-    ├── DOKUMENTASI_KODE.md
+    ├── analisis_spesifikasi.md
+    ├── catatan_function.md
     └── database_init.sql
 ```
 
