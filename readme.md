@@ -82,6 +82,8 @@ Web Data Mahasiswa/
 2. Data sudah tampil otomatis
 3. Kalo mau cari, ketik nama di kolom cari
 
+
+
 **Tambah Data:**
 1. Buka halaman ADMIN
 2. Klik tombol "TAMBAH DATA"
@@ -90,6 +92,7 @@ Web Data Mahasiswa/
 5. Setiap field wajib diisi
 6. Klik tombol Simpan
 7. Kalau berhasil, akan ada notifikasi sukses
+
 
 **Edit Data:**
 1. Di ADMIN, cari data yang mau diedit
