@@ -72,6 +72,7 @@ Web Data Mahasiswa/
     ├── analisis_spesifikasi.md
     ├── catatan_function.md
     └── database_init.sql
+    └── Dokumentasi Penggunaan Website Data Mahasiswa.pdf
 ```
 
 ## Cara Menggunakan
@@ -113,7 +114,7 @@ Web Data Mahasiswa/
 - **Icons:** Bootstrap Icons
 - **Backend:** PHP 7.4+
 - **Database:** MySQL 5.7+
-- **Library Tambahan:** SweetAlert2 (buat konfirmasi hapus yang cantik)
+- **Library Tambahan:** SweetAlert2 (buat konfirmasi hapus)
 
 Semua library diambil dari CDN, jadi tidak perlu install apapun selain XAMPP.
 
@@ -124,6 +125,7 @@ Detail dokumentasi lengkap di folder `docs/`:
 
 - `analisis_spesifikasi.md` - Penjelasan tentang aplikasi
 - `catatan_function.md` - Penjelasan setiap function
+- `Dokumentasi Penggunaan Website Data Mahasiswa.pdf` - Penjelasan penggunaan website disertai screenshot gambar.
 
 
 ## Lisensi
