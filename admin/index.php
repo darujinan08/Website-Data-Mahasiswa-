@@ -173,12 +173,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['nim']))
                                 <table class="table table-striped table-hover">
                                     <thead class="table-primary">
                                         <tr>
-                                            <th style="width: 10%;">NIM</th>
-                                            <th style="width: 20%;">Nama</th>
-                                            <th style="width: 25%;">Alamat</th>
+                                            <th style="width: 8%;">NIM</th>
+                                            <th style="width: 18%;">Nama</th>
+                                            <th style="width: 22%;">Alamat</th>
                                             <th style="width: 12%;">Tanggal Lahir</th>
                                             <th style="width: 10%;">Gender</th>
-                                            <th style="width: 13%; text-align: center;">Aksi</th>
+                                            <th style="width: 8%; text-align: center;">Usia</th>
+                                            <th style="width: 12%; text-align: center;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -194,6 +195,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['nim']))
                                                     <?php else: ?>
                                                         <span class="badge bg-danger"><i class="bi bi-person-fill"></i> Perempuan</span>
                                                     <?php endif; ?>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <strong><?php echo hitungUsia($row['TANGGAL_LAHIR']); ?> tahun</strong>
                                                 </td>
                                                 <td style="text-align: center;">
                                                     <!-- Tombol Edit -->
@@ -282,6 +286,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['nim']))
                             </select>
                         </div>
 
+                        <!-- USIA (AUTO CALCULATED) -->
+                        <div class="mb-3">
+                            <label for="usiaTambah" class="form-label">Usia <span class="text-secondary">(Otomatis)</span></label>
+                            <input type="text" class="form-control" id="usiaTambah" 
+                                   value="Pilih tanggal lahir" disabled>
+                            <small class="form-text text-muted">Usia akan dihitung otomatis dari tanggal lahir</small>
+                        </div>
+
                         <hr>
                         <p class="text-muted small">
                             <span class="text-danger">*</span> = Kolom wajib diisi
@@ -349,6 +361,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['nim']))
                                 <option value="Laki-laki" <?php echo $editData['GENDER'] === 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
                                 <option value="Perempuan" <?php echo $editData['GENDER'] === 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
                             </select>
+                        </div>
+
+                        <!-- USIA (AUTO CALCULATED) -->
+                        <div class="mb-3">
+                            <label for="usiaEdit" class="form-label">Usia <span class="text-secondary">(Otomatis)</span></label>
+                            <input type="text" class="form-control" id="usiaEdit" 
+                                   value="<?php echo hitungUsia($editData['TANGGAL_LAHIR']); ?> tahun" disabled>
+                            <small class="form-text text-muted">Usia dihitung otomatis dari tanggal lahir</small>
                         </div>
 
                         <hr>
@@ -431,6 +451,47 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['nim']))
                 });
             });
         <?php endif; ?>
+
+        /**
+         * SCRIPT: Hitung Usia Real-time
+         * FUNGSI: Menghitung usia otomatis saat user mengubah tanggal lahir
+         */
+        function hitungUsiaRealtime(tanggalLahir) {
+            if (!tanggalLahir) return 'Pilih tanggal lahir';
+            
+            const today = new Date();
+            const birthDate = new Date(tanggalLahir);
+            
+            if (isNaN(birthDate.getTime())) return 'Tanggal tidak valid';
+            if (birthDate > today) return 'Tanggal tidak valid (masa depan)';
+            
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return age < 0 ? 'Tanggal tidak valid' : age + ' tahun';
+        }
+
+        // Event listener untuk modal tambah
+        const tglLahirTambah = document.getElementById('tglLahirTambah');
+        const usiaTambah = document.getElementById('usiaTambah');
+        if (tglLahirTambah && usiaTambah) {
+            tglLahirTambah.addEventListener('change', function() {
+                usiaTambah.value = hitungUsiaRealtime(this.value);
+            });
+        }
+
+        // Event listener untuk modal edit
+        const tglLahirEdit = document.getElementById('tglLahirEdit');
+        const usiaEdit = document.getElementById('usiaEdit');
+        if (tglLahirEdit && usiaEdit) {
+            tglLahirEdit.addEventListener('change', function() {
+                usiaEdit.value = hitungUsiaRealtime(this.value);
+            });
+        }
     </script>
 </body>
 </html>
